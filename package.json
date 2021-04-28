@@ -1,0 +1,21 @@
+{
+  "name": "dlcache",
+  "version": "0.9.0",
+  "url" : "https://github.com/jjYBdx4IL/dlcache",
+  "description": "A simple cache for file downloads.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "author": "jjYBdx4IL@github.com",
+  "license": "MIT",
+  "dependencies": {
+    "follow-redirects": "^1.14.0"
+  },
+  "devDependencies": {
+    "@types/async": "^3.2.6",
+    "@types/follow-redirects": "^1.13.0",
+    "async": "^3.2.0"
+  }
+}
