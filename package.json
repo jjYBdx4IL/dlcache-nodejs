@@ -1,9 +1,10 @@
 {
   "name": "dlcache",
   "version": "0.9.0",
-  "url" : "https://github.com/jjYBdx4IL/dlcache",
+  "homepage": "https://github.com/jjYBdx4IL/dlcache-nodejs",
   "description": "A simple cache for file downloads.",
   "main": "index.js",
+  "files": ["*.js", "src/types/*.d.ts"],
   "scripts": {
     "test": "node test.js"
   },
@@ -17,5 +18,12 @@
     "@types/async": "^3.2.6",
     "@types/follow-redirects": "^1.13.0",
     "async": "^3.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jjYBdx4IL/dlcache-nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jjYBdx4IL/dlcache-nodejs.git"
   }
 }

@@ -80,21 +80,22 @@ function cksumvfy(opts, tmppath, fullpath, resolve, reject) {
  */
 function dl(url, opts = undefined) {
     return new Promise((resolve, reject) => {
-        if (!opts) {
-            throw new Error("checksum required")
-        }
+        var tmppath = undefined
         try {
+            if (!opts) {
+                throw new Error("checksum required")
+            }
             const cdir = cacheDir()
             const relpath = url.toString().replace(/[^A-Za-z0-9/.-]/, "_")
             const fullpath = path.join(cdir, relpath)
+            const ppath = path.dirname(fullpath)
+            tmppath = path.join(ppath, "." + path.basename(fullpath) + ".tmp")
             if (fs.existsSync(fullpath)) {
                 resolve(fullpath)
             }
-            const ppath = path.dirname(fullpath)
             if (!fs.existsSync(ppath)) {
                 fs.mkdirSync(ppath, { recursive: true })
             }
-            const tmppath = path.join(ppath, "." + path.basename(fullpath) + ".tmp")
             const ws = fs.createWriteStream(tmppath)
             const req = url.protocol == 'http' ? http.get(url) : https.get(url)
             req.on('response', function (res) {
@@ -104,6 +105,12 @@ function dl(url, opts = undefined) {
             })
         } catch (err) {
             reject(err)
+        } finally {
+            try {
+                if (tmppath && fs.existsSync(tmppath)) {
+                    fs.rmSync(tmppath, {force: true})
+                }
+            } catch (err) {}
         }
     })
 }
